@@ -7,8 +7,8 @@ import { cn } from "@/lib/utils";
 const navItems = [
     { label: "Home", to: "/" },
     { label: "Blog", to: "/blog" },
-    { label: "Chart", to: "/chart" },
-    { label: "Form", to: "/form" },
+    { label: "Create Password", to: "/password" },
+    { label: "Test Password", to: "/test" },
 ];
 
 const Navbar = () => {

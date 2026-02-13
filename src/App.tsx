@@ -5,8 +5,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Index from "./pages/Index";
 import Blog from "./pages/Blog";
-import ChartPage from "./pages/ChartPage";
-import FormPage from "./pages/FormPage";
+import CreatePass from "./pages/CreatePass.tsx";
+import TestPass from "./pages/TestPass.tsx"
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -20,8 +20,8 @@ const App = () => (
                 <Routes>
                     <Route path="/" element={<Index />} />
                     <Route path="/blog" element={<Blog />} />
-                    <Route path="/chart" element={<ChartPage />} />
-                    <Route path="/form" element={<FormPage />} />
+                    <Route path="/password" element={<CreatePass />} />
+                    <Route path="/test" element={<TestPass />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>
