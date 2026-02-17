@@ -345,11 +345,17 @@ const FormPage = () => {
                                                 {renderField("forumUsernames", "Old Forum Usernames", "vintagelover", "Historical handles from old leaks are goldmines for credential stuffing.")}
                                                 {renderField("emailPrefixes", "Email Prefix", "jane.doe", "Everything before the @ symbol is a prime candidate for password segments.")}
                                                 <div className="flex justify-center pt-4 col-span-full">
-                                                    <ReCAPTCHA
-                                                        sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-                                                        onChange={(token) => setCaptchaToken(token)}
-                                                        theme="dark"
-                                                    />
+                                                    {import.meta.env.VITE_RECAPTCHA_SITE_KEY ? (
+                                                        <ReCAPTCHA
+                                                            sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                                                            onChange={(token) => setCaptchaToken(token)}
+                                                            theme="dark"
+                                                        />
+                                                    ) : (
+                                                        <div className="text-destructive text-sm font-medium p-4 border border-destructive/20 rounded-md bg-destructive/10">
+                                                            reCAPTCHA configuration missing. Please check your environment variables.
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </>
                                         )}
