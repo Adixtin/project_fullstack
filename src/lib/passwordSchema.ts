@@ -116,7 +116,7 @@ export function buildPasswordSchema(config: PasswordConfig) {
         schema = schema.regex(/[^A-Za-z0-9\s]/, "Must contain a symbol");
     }
 
-    let refined: z.ZodEffects<typeof schema, string, string> | typeof schema = schema;
+    let refined: any = schema;
 
     if (config.requireWords) {
         refined = (refined as any).refine(

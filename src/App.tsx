@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Blog from "./pages/Blog";
 import CreatePass from "./pages/CreatePass.tsx";
 import TestPass from "./pages/TestPass.tsx"
+import GeneratedPasslist from "./pages/GeneratedPasslist/GeneratedPasslist.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
                     <Route path="/blog" element={<Blog />} />
                     <Route path="/password" element={<CreatePass />} />
                     <Route path="/test" element={<TestPass />} />
+                    <Route path="/generated-passlist" element={<GeneratedPasslist />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </BrowserRouter>

@@ -5,6 +5,13 @@ export default {
         "./src/**/*.{js,ts,jsx,tsx}", // Check that this matches your file extensions!
     ],
     theme: {
+        container: {
+            center: true,
+            padding: "2rem",
+            screens: {
+                "2xl": "1400px",
+            },
+        },
         extend: {},
     },
     plugins: [],
