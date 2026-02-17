@@ -18,6 +18,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const schema = z.object({
     firstName: z.string().optional(),
@@ -125,6 +126,7 @@ const FormPage = () => {
     const [generatedPasswords, setGeneratedPasswords] = useState<string[]>([]);
     const [currentStep, setCurrentStep] = useState(0);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
     const form = useForm<FormValues>({
         resolver: zodResolver(schema),
@@ -342,6 +344,13 @@ const FormPage = () => {
                                                 {renderField("gamertags", "Gamertags", "SniperQueen", "Gaming IDs are often reused across multiple insecure platforms.")}
                                                 {renderField("forumUsernames", "Old Forum Usernames", "vintagelover", "Historical handles from old leaks are goldmines for credential stuffing.")}
                                                 {renderField("emailPrefixes", "Email Prefix", "jane.doe", "Everything before the @ symbol is a prime candidate for password segments.")}
+                                                <div className="flex justify-center pt-4 col-span-full">
+                                                    <ReCAPTCHA
+                                                        sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                                                        onChange={(token) => setCaptchaToken(token)}
+                                                        theme="dark"
+                                                    />
+                                                </div>
                                             </>
                                         )}
                                     </CardContent>
@@ -367,7 +376,11 @@ const FormPage = () => {
                                         ) : (
                                             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                                                 <DialogTrigger asChild>
-                                                    <Button type="button" className="bg-primary hover:bg-primary/90 shadow-md">
+                                                    <Button
+                                                        type="button"
+                                                        className="bg-primary hover:bg-primary/90 shadow-md"
+                                                        disabled={!captchaToken}
+                                                    >
                                                         Run Leak Check
                                                     </Button>
                                                 </DialogTrigger>
